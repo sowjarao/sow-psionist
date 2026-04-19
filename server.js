@@ -98,6 +98,12 @@ function generateSessionId() {
 }
 
 // Routes
+app.get('/config', (req, res) => {
+    res.json({
+        apiUrl: process.env.API_URL || `http://localhost:${PORT}`
+    });
+});
+
 app.get('/', (req, res) => {
     res.json({ message: 'Psionist backend running.' });
 });

@@ -1,6 +1,18 @@
 // Configuration
-const API_URL = 'http://localhost:8000';
+let API_URL = 'http://localhost:8000'; // Default fallback
 const MAX_GUESSES = 3;
+
+// Fetch API URL from backend config
+async function loadConfig() {
+    try {
+        const response = await fetch('http://localhost:8000/config');
+        const config = await response.json();
+        API_URL = config.apiUrl;
+        console.log('API URL loaded from config:', API_URL);
+    } catch (error) {
+        console.warn('Could not load config, using default API_URL:', API_URL);
+    }
+}
 
 // Game state
 let gameState = {
@@ -385,6 +397,9 @@ elements.correctAnswerInput.addEventListener('keypress', (e) => {
 });
 
 // Initialize
-console.log('Psionist game initialized. Make sure the backend is running on http://localhost:8000');
+(async () => {
+    await loadConfig();
+    console.log('Psionist game initialized. Backend API URL:', API_URL);
+})();
 
 // Made with Bob
