@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Psionist - Intelligent Mind Deduction Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <!-- Header -->
+            <div class="genie-title">🧠 Psionist</div>
+            <div class="genie-subtitle">Intelligent Mind Deduction Game</div>
+
+            <!-- Stats Bar (hidden initially) -->
+            <div id="stats-bar" class="stats-bar" style="display: none;">
+                <div class="stat-card">
+                    <div class="stat-value" id="question-count">0</div>
+                    <div class="stat-label">Questions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="guesses-left">3</div>
+                    <div class="stat-label">Guesses Left</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stage-icon">⏳</div>
+                    <div class="stat-label" id="stage-label">Start</div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div id="progress-wrap" class="progress-wrap" style="display: none;">
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <div class="progress-text" id="progress-text">Question progress: 0 / 20</div>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Start Screen -->
+            <div id="start-screen" class="screen">
+                <h3>🎮 How to play</h3>
+                <ul class="instructions">
+                    <li>Think of <strong>any real or fictional character</strong> — a person, superhero, historical figure, movie character, etc.</li>
+                    <li>Answer Psionist's yes/no questions honestly.</li>
+                    <li>Psionist will try to guess your character in <strong>up to 20 questions</strong> and <strong>3 guesses</strong>.</li>
+                </ul>
+                <button id="start-btn" class="btn btn-primary btn-full">✨ Start Game</button>
+            </div>
+
+            <!-- Questioning Screen -->
+            <div id="questioning-screen" class="screen" style="display: none;">
+                <div class="question-card">
+                    <div class="question-label" id="question-label">Question 1</div>
+                    <div class="question-text" id="question-text">Loading...</div>
+                </div>
+
+                <div class="answer-buttons">
+                    <button class="answer-btn" data-answer="yes">Yes</button>
+                    <button class="answer-btn" data-answer="no">No</button>
+                    <button class="answer-btn" data-answer="probably yes">Probably Yes</button>
+                    <button class="answer-btn" data-answer="probably no">Probably No</button>
+                    <button class="answer-btn" data-answer="don't know">Don't Know</button>
+                </div>
+
+                <div class="force-guess-container">
+                    <button id="force-guess-btn" class="btn btn-secondary">Force Guess 🎯</button>
+                </div>
+            </div>
+
+            <!-- Guessing Screen -->
+            <div id="guessing-screen" class="screen" style="display: none;">
+                <div id="thinking-spinner" class="thinking-spinner">
+                    <div class="spinner"></div>
+                    <div class="thinking-text">🧠 Psionist is thinking...</div>
+                </div>
+
+                <div id="guess-reveal" class="guess-reveal" style="display: none;">
+                    <div class="guess-label-sm">I think your character is...</div>
+                    <div class="guess-name" id="guess-name">Loading...</div>
+                </div>
+
+                <div id="guess-buttons" class="button-row" style="display: none;">
+                    <button id="correct-btn" class="btn btn-primary btn-grow">✅ Yes! Correct!</button>
+                    <button id="wrong-btn" class="btn btn-secondary btn-grow">❌ No, try again</button>
+                </div>
+
+                <div id="reveal-answer-section" class="reveal-answer-section" style="display: none;">
+                    <div class="reveal-prompt">Help me learn! Who were you thinking of?</div>
+                    <input type="text" id="correct-answer-input" class="answer-input" placeholder="Enter the character name...">
+                    <button id="submit-answer-btn" class="btn btn-primary btn-full">Submit Answer</button>
+                </div>
+            </div>
+
+            <!-- Finished Screen -->
+            <div id="finished-screen" class="screen" style="display: none;">
+                <div id="finish-banner" class="finish-banner">
+                    <div class="finish-icon" id="finish-icon">🎉</div>
+                    <div class="finish-message" id="finish-message">Game Over</div>
+                </div>
+
+                <details class="history-expander">
+                    <summary>📜 View conversation history</summary>
+                    <div id="history-content" class="history-content"></div>
+                </details>
+
+                <button id="play-again-btn" class="btn btn-primary btn-full">🔄 Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
