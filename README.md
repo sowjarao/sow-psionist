@@ -47,7 +47,7 @@ Create or edit the `.env` file in the root directory:
 
 ```bash
 GROQ_API_KEY=your_groq_api_key_here
-PORT=8000
+PORT=10000
 ```
 
 Replace `your_groq_api_key_here` with your actual Groq API key.
@@ -64,13 +64,13 @@ npm start
 npm run dev
 ```
 
-The application will be available at `http://localhost:8000`
+The application will be available at `http://localhost:10000`
 
 The server serves both the backend API and frontend static files, so you only need to run one command!
 
 ## How to Play
 
-1. Open `http://localhost:8000` in your browser
+1. Open `http://localhost:10000` in your browser
 2. Think of any real or fictional character (person, superhero, historical figure, movie character, etc.)
 3. Click "Start Game" to begin
 4. Answer Psionist's yes/no questions honestly
@@ -105,11 +105,11 @@ Edit `server.js` to modify:
 - `AUTO_GUESS_AFTER = 10` - Questions before auto-switching to guess mode
 - `MAX_GUESSES = 3` - Maximum number of guesses allowed
 - `MODEL = "llama-3.3-70b-versatile"` - LLM model to use
-- `PORT = 8000` - Server port (can also be set in .env)
+- `PORT = 10000` - Server port (can also be set in .env)
 
 ### Frontend Configuration
 Edit `app.js` to modify:
-- `API_URL = 'http://localhost:8000'` - Backend API URL
+- `API_URL = 'http://localhost:10000'` - Backend API URL
 - `MAX_GUESSES = 3` - Maximum guesses (should match backend)
 
 ## Project Files
@@ -190,7 +190,7 @@ For production deployment:
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `GROQ_API_KEY` | Your Groq API key (required) | - |
-| `PORT` | Server port | 8000 |
+| `PORT` | Server port | 10000 |
 
 ## Scripts
 

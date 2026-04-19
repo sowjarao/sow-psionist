@@ -1,16 +1,19 @@
 // Configuration
-let API_URL = 'http://localhost:8000'; // Default fallback
+let API_URL = 'http://localhost:10000'; // Default fallback
 const MAX_GUESSES = 3;
 
 // Fetch API URL from backend config
 async function loadConfig() {
     try {
-        const response = await fetch('http://localhost:8000/config');
+        // Try to fetch from the default fallback URL first
+        const response = await fetch(`${API_URL}/config`);
         const config = await response.json();
-        API_URL = config.apiUrl;
-        console.log('API URL loaded from config:', API_URL);
+        if (config.apiUrl) {
+            API_URL = config.apiUrl;
+            console.log('API URL loaded from .env:', API_URL);
+        }
     } catch (error) {
-        console.warn('Could not load config, using default API_URL:', API_URL);
+        console.warn('Could not load config from backend, using fallback API_URL:', API_URL);
     }
 }
 
@@ -124,7 +127,7 @@ async function apiPost(path, payload = {}) {
         return await response.json();
     } catch (error) {
         if (error.message.includes('Failed to fetch')) {
-            throw new Error('Cannot connect to the backend. Make sure FastAPI is running on port 8000.');
+            throw new Error('Cannot connect to the backend. Make sure FastAPI is running on port 10000.');
         }
         throw error;
     }
