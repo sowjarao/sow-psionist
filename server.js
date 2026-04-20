@@ -257,4 +257,3 @@ app.listen(PORT, () => {
     console.log(`Make sure GROQ_API_KEY is set in .env file`);
 });
 
-// Made with Bob

@@ -1,21 +1,11 @@
 // Configuration
-let API_URL = 'http://localhost:10000'; // Default fallback
-const MAX_GUESSES = 3;
+let API_URL = "https://harshi-psionist.onrender.com";
 
-// Fetch API URL from backend config
-async function loadConfig() {
-    try {
-        // Try to fetch from the default fallback URL first
-        const response = await fetch(`${API_URL}/config`);
-        const config = await response.json();
-        if (config.apiUrl) {
-            API_URL = config.apiUrl;
-            console.log('API URL loaded from .env:', API_URL);
-        }
-    } catch (error) {
-        console.warn('Could not load config from backend, using fallback API_URL:', API_URL);
-    }
+if (window.location.hostname === "localhost") {
+  API_URL = "http://localhost:10000";
 }
+console.log('Psionist game initialized. Backend API URL:', API_URL);
+const MAX_GUESSES = 3;
 
 // Game state
 let gameState = {
@@ -399,10 +389,3 @@ elements.correctAnswerInput.addEventListener('keypress', (e) => {
     }
 });
 
-// Initialize
-(async () => {
-    await loadConfig();
-    console.log('Psionist game initialized. Backend API URL:', API_URL);
-})();
-
-// Made with Bob
